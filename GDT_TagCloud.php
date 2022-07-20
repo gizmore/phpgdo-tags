@@ -1,7 +1,7 @@
 <?php
 namespace GDO\Tag;
 
-use GDO\DB\WithObject;
+use GDO\Core\WithObject;
 use GDO\Core\GDT_Template;
 use GDO\DB\Query;
 
