@@ -5,7 +5,7 @@
   <div>
 <?php $comma = ''; ?>
 <?php foreach ($field->tagtable->allObjectTags() as $tagObj) : ?>
-  <?php printf('%s%s(%d)', $comma, $tagObj->display('tag_name'), $tagObj->gdoVar('tag_count')); ?>
+  <?php printf('%s%s(%d)', $comma, $tagObj->gdoDisplay('tag_name'), $tagObj->gdoVar('tag_count')); ?>
   <?php if (!$comma) $comma = ', '; ?>
 <?php endforeach; ?>
   </div>
