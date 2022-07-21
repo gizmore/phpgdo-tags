@@ -49,7 +49,7 @@ final class GDT_Tags extends GDT
 	#############
 	### Event ###
 	#############
-	public function gdoAfterCreate() { $this->updateTags(); }
+	public function gdoAfterCreate(GDO $gdo) : void { $this->updateTags(); }
 	public function gdoAfterUpdate() { $this->updateTags(); }
 	public function updateTags() { $this->gdo->updateTags($this->getValue()); }
 	
