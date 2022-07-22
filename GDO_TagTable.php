@@ -15,7 +15,7 @@ class GDO_TagTable extends GDO
 	public function gdoTagObjectTable() {}
 
 	public function gdoCached() : bool { return false; }
-	public function gdoAbstract() { return $this->gdoTagObjectTable() === null; }
+	public function gdoAbstract() : bool { return $this->gdoTagObjectTable() === null; }
 	public function gdoColumns() : array
 	{
 		return array(
