@@ -8,7 +8,7 @@ use GDO\Core\GDT_Int;
 
 final class GDO_Tag extends GDO
 {
-	public function memCached() { return false; }
+	public function memCached() : bool { return false; }
 	
 	public function gdoColumns() : array
 	{
@@ -20,7 +20,7 @@ final class GDO_Tag extends GDO
 	}
 	
 	public function getID() : ?string { return $this->gdoVar('tag_id'); }
-	public function getName() { return $this->gdoVar('tag_name'); }
+	public function getName() : ?string { return $this->gdoVar('tag_name'); }
 	public function getCount() { return $this->gdoVar('tag_count'); }
 	
 	public function displayName() { return $this->getName(); }
