@@ -75,7 +75,7 @@ final class AdminEdit extends MethodForm
 	{
 		$this->gdo->delete();
 		$rows = Database::instance()->affectedRows();
-		return $this->message('msg_tag_deleted', [$rows])->addField(Website::redirectMessage(href('Tag', 'AdminOverview')));
+		$this->redirectMessage('msg_tag_deleted', [$rows])->href(href('Tag', 'AdminOverview'));
 	}
 
 }
