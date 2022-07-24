@@ -1,5 +1,5 @@
 <?php
-namespace GDO\Tag;
+namespace GDO\Tags;
 
 use GDO\Core\WithObject;
 use GDO\Core\GDT_Template;

@@ -1,9 +1,7 @@
 <?php
-namespace GDO\Tag;
+namespace GDO\Tags;
 
 use GDO\Core\GDO_Module;
-use GDO\Angular\Module_Angular;
-use GDO\Core\Application;
 
 /**
  * Module to ease tagging of GDOs.
@@ -25,19 +23,7 @@ final class Module_Tag extends GDO_Module
 	
 	public function getClasses() : array { return [GDO_Tag::class]; }
 	
-	public function onIncludeScripts() : void
-	{
-	    if (module_enabled('Angular'))
-	    {
-	        if (Module_Angular::instance()->cfgIncludeScripts() ||
-	            Application::instance()->hasTheme('material'))
-	        {
-    	        $this->addJS('js/gwf-tag-ctrl.js');
-	        }
-	    }
-	}
-	
-	public function href_administrate_module() { return href('Tag', 'AdminOverview'); }
+	public function href_administrate_module() : ?string { return href('Tag', 'AdminOverview'); }
 	
 	public function renderAdminTabs()
 	{

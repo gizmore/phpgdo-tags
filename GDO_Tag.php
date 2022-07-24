@@ -1,5 +1,5 @@
 <?php
-namespace GDO\Tag;
+namespace GDO\Tags;
 
 use GDO\Core\GDO;
 use GDO\Core\GDT_AutoInc;
@@ -15,7 +15,7 @@ final class GDO_Tag extends GDO
 		return array(
 			GDT_AutoInc::make('tag_id'),
 			GDT_TagName::make('tag_name')->notNull()->unique(),
-			GDT_Int::make('tag_count')->unsigned()->notNull()->initial('1')->writable(false),
+			GDT_Int::make('tag_count')->unsigned()->notNull()->initial('1')->writeable(false),
 		);
 	}
 	

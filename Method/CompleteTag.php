@@ -2,12 +2,12 @@
 namespace GDO\Tag\Method;
 
 use GDO\Core\GDO;
-use GDO\Tag\GDO_Tag;
-use GDO\Core\MethodCompletionSearch;
+use GDO\Core\MethodCompletion;
+use GDO\Tags\GDO_Tag;
 
-final class CompleteTag extends MethodCompletionSearch
+final class CompleteTag extends MethodCompletion
 {
-    public function gdoTable()
+    public function gdoTable() : GDO
     {
         return GDO_Tag::table();
     }
@@ -25,5 +25,10 @@ final class CompleteTag extends MethodCompletionSearch
             'display' => $gdo->renderCell(),
         );
     }
+	public function execute()
+	{
+	}
+
+
 
 }

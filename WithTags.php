@@ -1,5 +1,5 @@
 <?php
-namespace GDO\Tag;
+namespace GDO\Tags;
 
 use GDO\DB\Cache;
 
@@ -30,7 +30,7 @@ trait WithTags
 	###########
 	/**
 	 * Get all tags for this object.
-	 * @return \GDO\Tag\GDO_Tag[]
+	 * @return \GDO\Tags\GDO_Tag[]
 	 */
 	public function getTags()
 	{

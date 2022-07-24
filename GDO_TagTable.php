@@ -1,5 +1,5 @@
 <?php
-namespace GDO\Tag;
+namespace GDO\Tags;
 
 use GDO\Core\GDO;
 use GDO\Core\GDT_CreatedAt;

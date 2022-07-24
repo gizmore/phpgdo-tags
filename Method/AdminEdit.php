@@ -7,9 +7,9 @@ use GDO\Form\GDT_AntiCSRF;
 use GDO\Form\GDT_Form;
 use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
-use GDO\Tag\GDT_Tag;
-use GDO\Tag\Module_Tag;
-use GDO\Tag\GDO_Tag;
+use GDO\Tags\GDT_Tag;
+use GDO\Tags\Module_Tag;
+use GDO\Tags\GDO_Tag;
 use GDO\Util\Common;
 use GDO\Form\GDT_Validator;
 

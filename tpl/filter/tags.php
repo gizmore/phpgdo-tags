@@ -1,4 +1,4 @@
-<?php /** @var $field \GDO\Tag\GDT_Tags **/ ?>
+<?php /** @var $field \GDO\Tags\GDT_Tags **/ ?>
 <input
  name="f[<?=$field->name?>]"
  type="text"

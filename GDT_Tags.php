@@ -1,30 +1,28 @@
 <?php
-namespace GDO\Tag;
+namespace GDO\Tags;
 
+use GDO\Core\GDO;
 use GDO\Core\GDT;
 use GDO\Core\GDT_Template;
 use GDO\UI\WithIcon;
-use GDO\Form\WithFormFields;
 use GDO\UI\WithLabel;
 use GDO\Util\Arrays;
+use GDO\Form\WithFormAttributes;
 
 /**
  * A tag form input field.
  * Updates an objects tagdata upon create and update.
  * 
  * @author gizmore
- * @version 6.10
- * @since 3.00
+ * @version 7.0.1
+ * @since 3.0.0
  * @see WithTags
  */
 final class GDT_Tags extends GDT
 {
     use WithIcon;
     use WithLabel;
-    use WithFormFields;
-    
-    public $writable = true;
-    public $editable = true;
+    use WithFormAttributes;
     
     public function defaultLabel() : self { return $this->label('tags'); }
     
@@ -41,16 +39,15 @@ final class GDT_Tags extends GDT
     /**
      * Mandatory.
      * The tagtable backing this tags input.
-     * @var \GDO\Tag\GDO_TagTable
      */
-    public $tagtable;
+    public GDO_TagTable $tagtable;
     public function tagtable(GDO_TagTable $tagtable) { $this->tagtable = $tagtable; return $this; }
     
 	#############
 	### Event ###
 	#############
 	public function gdoAfterCreate(GDO $gdo) : void { $this->updateTags(); }
-	public function gdoAfterUpdate() { $this->updateTags(); }
+	public function gdoAfterUpdate(GDO $gdo) : void { $this->updateTags(); }
 	public function updateTags() { $this->gdo->updateTags($this->getValue()); }
 	
 	#############
@@ -73,12 +70,13 @@ final class GDT_Tags extends GDT
 		return [];
 	}
 	
-	public function toVar($value)
+	public function toVar($value) : ?string
 	{
 	    if ($value !== null)
 	    {
 	        return json_encode(array_values($value));
 	    }
+	    return null;
 	}
 	
 	####################
@@ -93,19 +91,19 @@ final class GDT_Tags extends GDT
 	### Render ###
 	##############
 	public function renderCell() : string { return GDT_Template::php('Tag', 'cell/tags.php', ['field' => $this]); }
-	public function renderForm() { return GDT_Template::php('Tag', 'form/tags.php', ['field' => $this]); }
+	public function renderForm() : string { return GDT_Template::php('Tag', 'form/tags.php', ['field' => $this]); }
 	public function renderJSON()
 	{
-		return array(
+		return [
 		    'all' => array_keys(GDO_Tag::table()->all()),
 			'tags' => $this->gdo ? array_values(array_map(function($tag){return $tag->getName();}, $this->gdo->getTags())) : $this->getValue(),
-		);
+		];
 	}
 	
 	################
 	### Validate ###
 	################
-	public function validate($tags)
+	public function validate($tags) : bool
 	{
 		# Have to pass null check
 		if (parent::validate($tags))
@@ -143,9 +141,9 @@ final class GDT_Tags extends GDT
 		}
 	}
 	
-	public function renderHeader() { return $this->displayLabel(); }
+	public function renderHeader() : string { return $this->displayLabel(); }
 	
-	public function renderFilter($f)
+	public function renderFilter($f) : string
 	{
 		return GDT_Template::php('Tag', 'filter/tags.php', ['field' => $this, 'f' => $f]);
 	}

@@ -1,4 +1,4 @@
-<?php /** @var $field \GDO\Tag\GDT_Tags **/ ?>
+<?php /** @var $field \GDO\Tags\GDT_Tags **/ ?>
 <div class="gdt-container<?= $field->classError(); ?>">
   <?= $field->htmlIcon(); ?>
   <label <?=$field->htmlForID()?>><?= $field->displayLabel(); ?></label>

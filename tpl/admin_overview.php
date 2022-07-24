@@ -1,7 +1,7 @@
 <?php
 use GDO\Table\GDT_Table;
-use GDO\Tag\Module_Tag;
-use GDO\Tag\GDO_Tag;
+use GDO\Tags\Module_Tag;
+use GDO\Tags\GDO_Tag;
 use GDO\UI\GDT_Button;
 use GDO\Core\GDT_Fields;
 
