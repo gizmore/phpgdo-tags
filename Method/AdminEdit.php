@@ -33,7 +33,7 @@ final class AdminEdit extends MethodForm
 		$form->actions()->addField(GDT_Submit::make('merge'));
 		$form->addField(GDT_Tag::make('merge_tag'));
 		$form->addField(GDT_Validator::make()->validatorFor($form, 'merge_tag', [$this, 'validateMergeTarget']));
-		$form->withGDOValuesFrom($this->gdo);
+// 		$form->withGDOValuesFrom($this->gdo);
 	}
 	
 	public function validateMergeTarget(GDT_Form $form, GDT_Tag $tag)
