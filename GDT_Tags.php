@@ -53,7 +53,7 @@ final class GDT_Tags extends GDT
 	#############
 	### Value ###
 	#############
-	public function toValue(string $var=null)
+	public function toValue($var=null)
 	{
 		if (!empty($var))
 		{
