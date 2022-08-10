@@ -23,7 +23,7 @@ final class Module_Tag extends GDO_Module
 	
 	public function getClasses() : array { return [GDO_Tag::class]; }
 	
-	public function href_administrate_module() : ?string { return href('Tag', 'AdminOverview'); }
+	public function hrefAdministration() : ?string { return href('Tag', 'AdminOverview'); }
 	
 	public function renderAdminTabs()
 	{
