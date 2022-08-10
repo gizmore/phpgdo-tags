@@ -22,7 +22,7 @@ final class CompleteTag extends MethodCompletion
         return array(
             'id' => $gdo->getID(),
             'text' => $gdo->displayName(),
-            'display' => $gdo->renderCell(),
+            'display' => $gdo->renderHTML(),
         );
     }
 	public function execute()

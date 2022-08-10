@@ -90,7 +90,7 @@ final class GDT_Tags extends GDT
 	##############
 	### Render ###
 	##############
-	public function renderCell() : string { return GDT_Template::php('Tag', 'cell/tags.php', ['field' => $this]); }
+	public function renderHTML() : string { return GDT_Template::php('Tag', 'cell/tags.php', ['field' => $this]); }
 	public function renderForm() : string { return GDT_Template::php('Tag', 'form/tags.php', ['field' => $this]); }
 	public function renderJSON()
 	{
