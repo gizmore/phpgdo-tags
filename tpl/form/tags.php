@@ -12,7 +12,7 @@
   <input
    <?=$field->htmlID()?>
    type="text"
-   <?=$field->htmlFormName()?>
+   <?=$field->htmlName()?>
    size="64"
    <?= $field->htmlDisabled(); ?>
    <?= $field->htmlRequired(); ?>
