@@ -1,5 +1,5 @@
 <?php
-namespace GDO\Tag\Method;
+namespace GDO\Tags\Method;
 
 use GDO\Core\GDO;
 use GDO\Core\MethodCompletion;

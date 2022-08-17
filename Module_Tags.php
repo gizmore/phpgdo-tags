@@ -42,7 +42,7 @@ final class Module_Tags extends GDO_Module
 // 			{
 // 				foreach ($classes as $class)
 // 				{
-// 					if (is_subclass_of($class, 'GDO\Tag\GDO_TagTable'))
+// 					if (is_subclass_of($class, 'GDO\Tags\GDO_TagTable'))
 // 					{
 // 						$table = GDO::tableFor($class);
 // 						$query->join("RIGHT JOIN {$table->gdoTableIdentifier()} ON tag_tag=tag_id");

@@ -49,7 +49,7 @@ class GDO_TagTable extends GDO
 			{
 				foreach ($classes as $className)
 				{
-					if (is_subclass_of($className, 'GDO\Tag\GDO_TagTable'))
+					if (is_subclass_of($className, 'GDO\Tags\GDO_TagTable'))
 					{
 						$tables[] = GDO::tableFor($className);
 					}
