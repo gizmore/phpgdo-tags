@@ -23,7 +23,7 @@ class GDT_TagCloud extends GDT_Template
 	
 	protected function __construct()
 	{
-		$this->template('Tag', 'cell/tag_cloud.php', ['field'=>$this]);
+		$this->template('Tags', 'cell/tag_cloud.php', ['field'=>$this]);
 	}
 	
 	/**

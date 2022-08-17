@@ -24,9 +24,9 @@ final class GDO_Tag extends GDO
 	public function getCount() { return $this->gdoVar('tag_count'); }
 	
 	public function displayName() { return $this->getName(); }
-	public function renderHTML() : string { return GDT_Template::php('Tag', 'cell/tag.php', ['field' => $this]); }
+	public function renderHTML() : string { return GDT_Template::php('Tags', 'cell/tag.php', ['field' => $this]); }
 	
-	public function href_edit() {return href('Tag', 'AdminEdit', '&id='.$this->getID()); }
+	public function href_edit() {return href('Tags', 'AdminEdit', '&id='.$this->getID()); }
 	
 	##############
 	### Static ###

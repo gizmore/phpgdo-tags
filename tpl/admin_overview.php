@@ -19,6 +19,6 @@ $table->headers($headers);
 $table->filtered();
 $table->paginateDefault();
 $table->query($query);
-$table->href(href('Tag', 'AdminOverview'));
+$table->href(href('Tags', 'AdminOverview'));
 
 echo $table->render();

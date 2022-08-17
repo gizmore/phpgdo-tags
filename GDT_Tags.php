@@ -90,8 +90,8 @@ final class GDT_Tags extends GDT
 	##############
 	### Render ###
 	##############
-	public function renderHTML() : string { return GDT_Template::php('Tag', 'cell/tags.php', ['field' => $this]); }
-	public function renderForm() : string { return GDT_Template::php('Tag', 'form/tags.php', ['field' => $this]); }
+	public function renderHTML() : string { return GDT_Template::php('Tags', 'cell/tags.php', ['field' => $this]); }
+	public function renderForm() : string { return GDT_Template::php('Tags', 'form/tags.php', ['field' => $this]); }
 	public function renderJSON()
 	{
 		return [
@@ -145,7 +145,7 @@ final class GDT_Tags extends GDT
 	
 	public function renderFilter($f) : string
 	{
-		return GDT_Template::php('Tag', 'filter/tags.php', ['field' => $this, 'f' => $f]);
+		return GDT_Template::php('Tags', 'filter/tags.php', ['field' => $this, 'f' => $f]);
 	}
 	
 }

@@ -10,7 +10,7 @@ class GDT_Tag extends GDT_Object
 // 	    parent::__construct();
 	    $this->icon('tag');
 	    $this->table(GDO_Tag::table());
-		$this->completionHref(href('Tag', 'CompleteTag'));
+		$this->completionHref(href('Tags', 'CompleteTag'));
 	}
 	
 	/**
