@@ -4,6 +4,7 @@ namespace GDO\Tags;
 use GDO\Core\WithObject;
 use GDO\Core\GDT_Template;
 use GDO\DB\Query;
+use GDO\Table\GDT_Filter;
 
 /**
  * Render a tag cloud.
@@ -67,7 +68,7 @@ class GDT_TagCloud extends GDT_Template
 	    return $this;
 	}
 	
-	public function filterQuery(Query $query, $rq=null) : self
+	public function filterQuery(Query $query, GDT_Filter $f) : self
 	{
 		if ($filterId = $this->filterVar($rq))
 		{
