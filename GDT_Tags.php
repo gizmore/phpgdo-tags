@@ -8,6 +8,7 @@ use GDO\UI\WithIcon;
 use GDO\UI\WithLabel;
 use GDO\Util\Arrays;
 use GDO\Form\WithFormAttributes;
+use GDO\Table\GDT_Filter;
 
 /**
  * A tag form input field.
@@ -143,7 +144,7 @@ final class GDT_Tags extends GDT
 	
 	public function renderHeader() : string { return $this->displayLabel(); }
 	
-	public function renderFilter($f) : string
+	public function renderFilter(GDT_Filter $f) : string
 	{
 		return GDT_Template::php('Tags', 'filter/tags.php', ['field' => $this, 'f' => $f]);
 	}
