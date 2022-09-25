@@ -9,6 +9,8 @@ use GDO\UI\WithLabel;
 use GDO\Util\Arrays;
 use GDO\Form\WithFormAttributes;
 use GDO\Table\GDT_Filter;
+use GDO\Core\WithValue;
+use GDO\Core\WithError;
 
 /**
  * A tag form input field.
@@ -23,6 +25,8 @@ final class GDT_Tags extends GDT
 {
     use WithIcon;
     use WithLabel;
+    use WithError;
+    use WithValue;
     use WithFormAttributes;
     
     public function defaultLabel() : self { return $this->label('tags'); }

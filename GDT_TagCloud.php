@@ -70,13 +70,13 @@ class GDT_TagCloud extends GDT_Template
 	
 	public function filterQuery(Query $query, GDT_Filter $f) : self
 	{
-		if ($filterId = $this->filterVar($rq))
+		if ($filterId = $this->filterVar($f))
 		{
 			$tagtable = $this->getTagTable();
 			$objtable = $this->table;
 			$query->join("JOIN {$tagtable->gdoTableIdentifier()} ON tag_tag={$filterId} AND tag_object={$objtable->gdoPrimaryKeyColumn()->identifier()}");
 		}
-		return $query;
+		return $this;
 	}
 	
 	

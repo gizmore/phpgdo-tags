@@ -1,21 +1,23 @@
-<?php /** @var $field \GDO\Tags\GDT_Tags **/ ?>
-<div class="gdt-container<?= $field->classError(); ?>">
-  <?= $field->htmlIcon(); ?>
-  <label <?=$field->htmlForID()?>><?= $field->displayLabel(); ?></label>
-  <div>
+<?php
+namespace GDO\Tags\tpl\form;
+/** @var $field \GDO\Tags\GDT_Tags **/
+?>
+<div class="gdt-container<?=$field->classError()?>">
+ <label<?=$field->htmlForID()?>><?=$field->htmlIcon()?><?=$field->renderLabel()?></label>
+ <div>
 <?php $comma = ''; ?>
 <?php foreach ($field->tagtable->allObjectTags() as $tagObj) : ?>
-  <?php printf('%s%s(%d)', $comma, $tagObj->gdoDisplay('tag_name'), $tagObj->gdoVar('tag_count')); ?>
-  <?php if (!$comma) $comma = ', '; ?>
+<?php printf('%s%s(%d)', $comma, $tagObj->gdoDisplay('tag_name'), $tagObj->gdoVar('tag_count')); ?>
+<?php if (!$comma) $comma = ', '; ?>
 <?php endforeach; ?>
-  </div>
-  <input
-   <?=$field->htmlID()?>
-   type="text"
-   <?=$field->htmlName()?>
-   size="64"
-   <?= $field->htmlDisabled(); ?>
-   <?= $field->htmlRequired(); ?>
-   value="<?= $field->renderVar(); ?>" />
-  <?= $field->htmlError(); ?>
+ </div>
+ <input
+<?=$field->htmlID()?>
+  type="text"
+<?=$field->htmlName()?>
+  size="64"
+<?=$field->htmlDisabled()?>
+<?=$field->htmlRequired()?>
+  value="<?=html($field->getVar())?>" />
+ <?=$field->htmlError()?>
 </div>
