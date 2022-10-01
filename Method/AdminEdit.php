@@ -1,14 +1,13 @@
 <?php
 namespace GDO\Tags\Method;
 
-use GDO\Core\Website;
 use GDO\DB\Database;
 use GDO\Form\GDT_AntiCSRF;
 use GDO\Form\GDT_Form;
 use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
 use GDO\Tags\GDT_Tag;
-use GDO\Tags\Module_Tag;
+use GDO\Tags\Module_Tags;
 use GDO\Tags\GDO_Tag;
 use GDO\Util\Common;
 use GDO\Form\GDT_Validator;
@@ -20,13 +19,13 @@ final class AdminEdit extends MethodForm
 	public function execute()
 	{
 		$this->gdo = GDO_Tag::table()->find(Common::getRequestString('id'));
-		return Module_Tag::instance()->renderAdminTabs()->addField(parent::execute());
+		return Module_Tags::instance()->renderAdminTabs()->addField(parent::execute());
 	}
 	
 	public function createForm(GDT_Form $form) : void
 	{
 	    $tags = GDO_Tag::table();
-		$form->addFields($tags->gdoColumnsCache());
+		$form->addFields(...$tags->gdoColumnsCache());
 		$form->addField(GDT_AntiCSRF::make());
 		$form->actions()->addField(GDT_Submit::make());
 		$form->actions()->addField(GDT_Submit::make('delete'));

@@ -1,11 +1,11 @@
 <?php
 use GDO\Table\GDT_Table;
-use GDO\Tags\Module_Tag;
+use GDO\Tags\Module_Tags;
 use GDO\Tags\GDO_Tag;
 use GDO\UI\GDT_Button;
 use GDO\Core\GDT_Fields;
 
-$module = Module_Tag::instance();
+$module = Module_Tags::instance();
 echo $module->renderAdminTabs();
 
 $gdo = GDO_Tag::table();
