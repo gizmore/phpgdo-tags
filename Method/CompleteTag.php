@@ -5,6 +5,11 @@ use GDO\Core\GDO;
 use GDO\Core\MethodCompletion;
 use GDO\Tags\GDO_Tag;
 
+/**
+ * Tag autocompletion.
+ * 
+ * @author gizmore
+ */
 final class CompleteTag extends MethodCompletion
 {
 
@@ -15,9 +20,7 @@ final class CompleteTag extends MethodCompletion
 
 	protected function gdoHeaderFields(): array
 	{
-		return [
-			'tag_name',
-		];
+		return $this->gdoTable()->gdoColumnsOnly('tag_name');
 	}
-
+	
 }
