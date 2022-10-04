@@ -3,7 +3,6 @@ namespace GDO\Tags;
 
 use GDO\Core\GDO;
 use GDO\Core\GDT_AutoInc;
-use GDO\Core\GDT_Template;
 use GDO\Core\GDT_Int;
 
 final class GDO_Tag extends GDO
@@ -23,8 +22,12 @@ final class GDO_Tag extends GDO
 	public function getName() : ?string { return $this->gdoVar('tag_name'); }
 	public function getCount() { return $this->gdoVar('tag_count'); }
 	
-	public function displayName() { return $this->getName(); }
-	public function renderHTML() : string { return GDT_Template::php('Tags', 'cell/tag.php', ['field' => $this]); }
+	public function renderName(): string { return $this->getName(); }
+	
+	public function renderHTML() : string
+	{
+		return GDT_Tag::make()->gdo($this)->renderHTML();
+	}
 	
 	public function href_edit() {return href('Tags', 'AdminEdit', '&id='.$this->getID()); }
 	

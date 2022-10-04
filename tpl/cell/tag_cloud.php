@@ -16,7 +16,7 @@ $filterVar = $field->filterVar($filterField);
   <a
    href="<?=$field->hrefTagFilter($tag)?>"
    class="<?=$filterVar === $tag->getID() ? 'gdo-selected' : ''?>">
-    <span><?=$tag->displayName()?>(<?=$tag->getCount()?>)</span>
+    <span><?=$tag->renderName()?>(<?=$tag->getCount()?>)</span>
  </a>
 <?php endforeach; ?>
   <input type="hidden" name="f[<?=$field->name?>]" value="<?=html($filterVar)?>" />
