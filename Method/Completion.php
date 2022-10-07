@@ -10,7 +10,7 @@ use GDO\Tags\GDO_Tag;
  * 
  * @author gizmore
  */
-final class CompleteTag extends MethodCompletion
+final class Completion extends MethodCompletion
 {
 
 	public function gdoTable(): GDO

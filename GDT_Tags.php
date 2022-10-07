@@ -2,15 +2,13 @@
 namespace GDO\Tags;
 
 use GDO\Core\GDO;
-use GDO\Core\GDT;
 use GDO\Core\GDT_Template;
-use GDO\UI\WithIcon;
-use GDO\UI\WithLabel;
 use GDO\Util\Arrays;
-use GDO\Form\WithFormAttributes;
 use GDO\Table\GDT_Filter;
-use GDO\Core\WithValue;
-use GDO\Core\WithError;
+use GDO\Core\WithGDO;
+use GDO\Core\GDT_ComboBox;
+use GDO\Core\GDT_Enum;
+use GDO\Core\GDT_Select;
 
 /**
  * A tag form input field.
@@ -21,13 +19,14 @@ use GDO\Core\WithError;
  * @since 3.0.0
  * @see WithTags
  */
-final class GDT_Tags extends GDT
+final class GDT_Tags extends GDT_Select
 {
-    use WithIcon;
-    use WithLabel;
-    use WithError;
-    use WithValue;
-    use WithFormAttributes;
+	use WithGDO;
+//     use WithIcon;
+//     use WithLabel;
+//     use WithError;
+//     use WithValue;
+//     use WithFormAttributes;
     
     public function defaultLabel() : self { return $this->label('tags'); }
     
@@ -35,7 +34,9 @@ final class GDT_Tags extends GDT
     {
         parent::__construct();
         $this->icon = 'tag';
-        $this->initial = '[]';
+        $this->multiple();
+//         $this->initial = '';
+        $this->completionHref(href('Tags', 'Completion'));
     }
     
     ################
@@ -87,21 +88,21 @@ final class GDT_Tags extends GDT
 	####################
 	### Min/Max Tags ###
 	####################
-	public $minTags = 0;
+	public int $minTags = 0;
 	public function minTags($minTags) { $this->minTags = $minTags; return $this; }
-	public $maxTags = 10;
+	public int $maxTags = 4;
 	public function maxTags($maxTags) { $this->maxTags = $maxTags; return $this; }
 	
 	##############
 	### Render ###
 	##############
-	public function renderHTML() : string { return GDT_Template::php('Tags', 'cell/tags.php', ['field' => $this]); }
-	public function renderForm() : string { return GDT_Template::php('Tags', 'form/tags.php', ['field' => $this]); }
+	public function renderHTML(): string { return GDT_Template::php('Tags', 'cell/tags.php', ['field' => $this]); }
+	public function renderForm(): string { return GDT_Template::php('Tags', 'form/tags.php', ['field' => $this]); }
 	public function renderJSON()
 	{
 		return [
 		    'all' => array_keys(GDO_Tag::table()->all()),
-			'tags' => $this->gdo ? array_values(array_map(function($tag){return $tag->getName();}, $this->gdo->getTags())) : $this->getValue(),
+			'tags' => isset($this->gdo) ? array_values(array_map(function($tag){return $tag->getName();}, $this->gdo->getTags())) : $this->getValue(),
 		];
 	}
 	

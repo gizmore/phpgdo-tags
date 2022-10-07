@@ -7,7 +7,7 @@ class GDT_Tag extends GDT_Object
 {
 	protected function __construct()
 	{
-// 	    parent::__construct();
+	    parent::__construct();
 	    $this->icon('tag');
 	    $this->table(GDO_Tag::table());
 		$this->completionHref(href('Tags', 'CompleteTag'));
