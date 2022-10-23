@@ -22,6 +22,12 @@ use GDO\Core\GDT_Select;
 final class GDT_Tags extends GDT_Select
 {
 	use WithGDO;
+	
+	public function isTestable(): bool
+	{
+		return false;
+	}
+	
 //     use WithIcon;
 //     use WithLabel;
 //     use WithError;

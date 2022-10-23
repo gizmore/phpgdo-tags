@@ -1,8 +1,12 @@
 <?php
+namespace GDO\Tags\tpl\cell;
 use GDO\Tags\GDT_Tags;
 /** @var $field GDT_Tags **/
-$field instanceof GDT_Tags;
-foreach ($field->gdo->getTags() as $tag)
+
+if (isset($field->gdo))
 {
-	echo $tag->renderName();
+	foreach ($field->gdo->getTags() as $tag)
+	{
+		echo $tag->renderName();
+	}
 }

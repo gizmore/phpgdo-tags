@@ -1,22 +1,24 @@
 <?php
+namespace GDO\Tags\tpl;
 use GDO\Table\GDT_Table;
 use GDO\Tags\Module_Tags;
 use GDO\Tags\GDO_Tag;
 use GDO\UI\GDT_Button;
-use GDO\Core\GDT_Fields;
+use GDO\Table\GDT_Filter;
 
 $module = Module_Tags::instance();
 echo $module->renderAdminTabs();
 
 $gdo = GDO_Tag::table();
-$query = $gdo->select('*');
+$query = $gdo->select();
+
+$filter = GDT_Filter::make();
 
 $table = GDT_Table::make();
-$headers = GDT_Fields::make();
-$headers->addFields($gdo->gdoColumnsCache());
-$headers->addField(GDT_Button::make('edit'));
-$table->headers($headers);
-$table->filtered();
+$table->getHeaders()->addFields(
+	GDT_Button::make('edit'),
+	...$gdo->gdoColumnsCache());
+$table->filtered(true, $filter);
 $table->paginateDefault();
 $table->query($query);
 $table->href(href('Tags', 'AdminOverview'));
