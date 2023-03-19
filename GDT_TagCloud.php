@@ -68,7 +68,7 @@ class GDT_TagCloud extends GDT_Template
 	    return $this;
 	}
 	
-	public function filterQuery(Query $query, GDT_Filter $f) : self
+	public function filterQuery(Query $query, GDT_Filter $f): static
 	{
 		if ($filterId = $this->filterVar($f))
 		{

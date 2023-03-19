@@ -34,7 +34,7 @@ final class GDT_Tags extends GDT_Select
 //     use WithValue;
 //     use WithFormAttributes;
     
-    public function defaultLabel() : self { return $this->label('tags'); }
+    public function defaultLabel(): static { return $this->label('tags'); }
     
     protected function __construct()
     {
