@@ -5,26 +5,27 @@ use GDO\DB\Database;
 use GDO\Form\GDT_AntiCSRF;
 use GDO\Form\GDT_Form;
 use GDO\Form\GDT_Submit;
+use GDO\Form\GDT_Validator;
 use GDO\Form\MethodForm;
+use GDO\Tags\GDO_Tag;
 use GDO\Tags\GDT_Tag;
 use GDO\Tags\Module_Tags;
-use GDO\Tags\GDO_Tag;
 use GDO\Util\Common;
-use GDO\Form\GDT_Validator;
 
 final class AdminEdit extends MethodForm
 {
+
 	private $gdo;
-	
+
 	public function execute()
 	{
 		$this->gdo = GDO_Tag::table()->find(Common::getRequestString('id'));
 		return Module_Tags::instance()->renderAdminTabs()->addField(parent::execute());
 	}
-	
-	public function createForm(GDT_Form $form) : void
+
+	public function createForm(GDT_Form $form): void
 	{
-	    $tags = GDO_Tag::table();
+		$tags = GDO_Tag::table();
 		$form->addFields(...$tags->gdoColumnsCache());
 		$form->addField(GDT_AntiCSRF::make());
 		$form->actions()->addField(GDT_Submit::make());
@@ -34,7 +35,13 @@ final class AdminEdit extends MethodForm
 		$form->addField(GDT_Validator::make()->validatorFor($form, 'merge_tag', [$this, 'validateMergeTarget']));
 // 		$form->withGDOValuesFrom($this->gdo);
 	}
-	
+
+	public function formValidated(GDT_Form $form)
+	{
+		$this->gdo->saveVars($form->getFormVars());
+		return parent::formValidated($form);
+	}
+
 	public function validateMergeTarget(GDT_Form $form, GDT_Tag $tag)
 	{
 		if (isset($_REQUEST['merge']))
@@ -50,17 +57,11 @@ final class AdminEdit extends MethodForm
 		}
 		return true;
 	}
-	
-	public function formValidated(GDT_Form $form)
-	{
-		$this->gdo->saveVars($form->getFormVars());
-		return parent::formValidated($form);
-	}
-	
+
 	public function onSubmit_merge(GDT_Form $form)
 	{
 // 		$mergeInto = $form->getField('merge_tag')->getValue();
-		
+
 // 		foreach (TagTable::allTagTables() as $tagTable)
 // 		{
 // 			foreach ($tagTable->allObjectsWithTag($this->gdo) as $object)

@@ -1,18 +1,18 @@
 <?php
 namespace GDO\Tags;
 
-use GDO\Core\WithObject;
 use GDO\Core\GDT_Template;
+use GDO\Core\WithObject;
 use GDO\DB\Query;
 use GDO\Table\GDT_Filter;
 
 /**
  * Render a tag cloud.
- * 
- * @author gizmore
+ *
  * @version 6.10
  * @since 6.04
- * 
+ *
+ * @author gizmore
  * @see WithTags
  * @see GDT_Tag
  * @see GDO_Tag
@@ -20,13 +20,21 @@ use GDO\Table\GDT_Filter;
  */
 class GDT_TagCloud extends GDT_Template
 {
+
 	use WithObject;
-	
+
+	public $totalCountCondition = '1';
+	public $filterName = 'f';
+
 	protected function __construct()
 	{
-		$this->template('Tags', 'cell/tag_cloud.php', ['field'=>$this]);
+		$this->template('Tags', 'cell/tag_cloud.php', ['field' => $this]);
 	}
-	
+
+	###################
+	### Total count ###
+	###################
+
 	/**
 	 * @return GDO_Tag[]
 	 */
@@ -34,7 +42,7 @@ class GDT_TagCloud extends GDT_Template
 	{
 		return $this->getTagTable()->allObjectTags();
 	}
-	
+
 	/**
 	 * @return GDO_TagTable
 	 */
@@ -42,33 +50,29 @@ class GDT_TagCloud extends GDT_Template
 	{
 		return $this->table->gdoTagTable();
 	}
-	
-	###################
-	### Total count ###
-	###################
-	public $totalCountCondition = '1';
+
 	public function totalCountCondition($totalCountCondition)
 	{
-	    $this->totalCountCondition = $totalCountCondition;
-	    return $this;
+		$this->totalCountCondition = $totalCountCondition;
+		return $this;
 	}
-	
-	public function totalCount()
-	{
-	    return $this->table->countWhere($this->totalCountCondition);
-	}
-	
+
 	##############
 	### Filter ###
 	##############
-	public $filterName = 'f';
+
+	public function totalCount()
+	{
+		return $this->table->countWhere($this->totalCountCondition);
+	}
+
 	public function filterName($filterName)
 	{
-	    $this->filterName = $filterName;
-	    return $this;
+		$this->filterName = $filterName;
+		return $this;
 	}
-	
-	public function filterQuery(Query $query, GDT_Filter $f): static
+
+	public function filterQuery(Query $query, GDT_Filter $f): self
 	{
 		if ($filterId = $this->filterVar($f))
 		{
@@ -78,17 +82,17 @@ class GDT_TagCloud extends GDT_Template
 		}
 		return $this;
 	}
-	
-	
-	public function hrefTagFilter(GDO_Tag $tag=null)
+
+
+	public function hrefTagFilter(GDO_Tag $tag = null)
 	{
 		$name = $this->name;
 		$f = $this->filterName;
 		$url = preg_replace("/&$f\\[$name\\]=\d+/", '', urldecode($_SERVER['REQUEST_URI']));
-		$url = preg_replace("/&page=\d+/", '', $url);
+		$url = preg_replace('/&page=\d+/', '', $url);
 		if ($tag)
 		{
-		    $url .= "&{$f}[$name]=" . $tag->getID();
+			$url .= "&{$f}[$name]=" . $tag->getID();
 		}
 		return $url;
 	}

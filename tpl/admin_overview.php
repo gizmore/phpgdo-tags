@@ -1,10 +1,11 @@
 <?php
 namespace GDO\Tags\tpl;
-use GDO\Table\GDT_Table;
-use GDO\Tags\Module_Tags;
-use GDO\Tags\GDO_Tag;
-use GDO\UI\GDT_Button;
+
 use GDO\Table\GDT_Filter;
+use GDO\Table\GDT_Table;
+use GDO\Tags\GDO_Tag;
+use GDO\Tags\Module_Tags;
+use GDO\UI\GDT_Button;
 
 $module = Module_Tags::instance();
 echo $module->renderAdminTabs();

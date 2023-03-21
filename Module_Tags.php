@@ -5,11 +5,11 @@ use GDO\Core\GDO_Module;
 
 /**
  * Module to ease tagging of GDOs.
- * 
- * @author gizmore
+ *
  * @version 6.10.1
  * @since 6.4.0
- * 
+ *
+ * @author gizmore
  * @see WithTags
  * @see GDT_Tags
  * @see GDO_Tag
@@ -17,14 +17,15 @@ use GDO\Core\GDO_Module;
  */
 final class Module_Tags extends GDO_Module
 {
+
 	public int $priority = 40;
-	
-	public function onLoadLanguage() : void { $this->loadLanguage('lang/tags'); }
-	
-	public function getClasses() : array { return [GDO_Tag::class]; }
-	
-	public function href_administrate_module() : ?string { return href('Tags', 'AdminOverview'); }
-	
+
+	public function onLoadLanguage(): void { $this->loadLanguage('lang/tags'); }
+
+	public function getClasses(): array { return [GDO_Tag::class]; }
+
+	public function href_administrate_module(): ?string { return href('Tags', 'AdminOverview'); }
+
 	public function renderAdminTabs()
 	{
 		return $this->php('admin_tabs.php');
@@ -53,7 +54,7 @@ final class Module_Tags extends GDO_Module
 // 		$query->exec();
 // 		Tag::table()->deleteWhere('tag_count=0')->exec();
 	}
-	
+
 	##################
 	### Top Navbar ###
 	##################

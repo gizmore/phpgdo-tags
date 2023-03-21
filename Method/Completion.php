@@ -7,7 +7,7 @@ use GDO\Tags\GDO_Tag;
 
 /**
  * Tag autocompletion.
- * 
+ *
  * @author gizmore
  */
 final class Completion extends MethodCompletion
@@ -22,5 +22,5 @@ final class Completion extends MethodCompletion
 	{
 		return $this->gdoTable()->gdoColumnsOnly('tag_name');
 	}
-	
+
 }

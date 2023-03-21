@@ -1,6 +1,8 @@
 <?php
+
 use GDO\UI\GDT_Bar;
 use GDO\UI\GDT_Link;
+
 $navbar = GDT_Bar::make();
 $navbar->addFields(
 	GDT_Link::make('link_tags')->href(href('Tags', 'AdminTags')),
