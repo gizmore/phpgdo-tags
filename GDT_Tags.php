@@ -70,7 +70,7 @@ final class GDT_Tags extends GDT_Select
 
 	public function gdoAfterUpdate(GDO $gdo): void { $this->updateTags(); }
 
-	public function toValue($var = null)
+	public function toValue(null|string|array $var): null|bool|int|float|string|object|array
 	{
 		if (!empty($var))
 		{
@@ -91,7 +91,7 @@ final class GDT_Tags extends GDT_Select
 	### Min/Max Tags ###
 	####################
 
-	public function toVar($value): ?string
+	public function toVar(null|bool|int|float|string|object|array $value): ?string
 	{
 		if ($value !== null)
 		{
@@ -104,7 +104,7 @@ final class GDT_Tags extends GDT_Select
 
 	public function renderForm(): string { return GDT_Template::php('Tags', 'form/tags.php', ['field' => $this]); }
 
-	public function renderJSON()
+	public function renderJSON(): array|string|null
 	{
 		return [
 			'all' => array_keys(GDO_Tag::table()->all()),
@@ -116,27 +116,27 @@ final class GDT_Tags extends GDT_Select
 	### Render ###
 	##############
 
-	public function validate($tags): bool
+	public function validate(int|float|string|array|null|object|bool $value): bool
 	{
 		# Have to pass null check
-		if (parent::validate($tags))
+		if (parent::validate($value))
 		{
 			# Has to be array
-			if (is_array($tags))
+			if (is_array($value))
 			{
 				# Check forced tag count
-				if (count($tags) < $this->minTags)
+				if (count($value) < $this->minTags)
 				{
 					return $this->error('err_min_tags', [$this->minTags]);
 				}
-				if (count($tags) > $this->maxTags)
+				if (count($value) > $this->maxTags)
 				{
 					return $this->error('err_max_tags', [$this->maxTags]);
 				}
 
 				# Check individual tags
 				$namefield = GDT_TagName::make();
-				foreach ($tags as $tagName)
+				foreach ($value as $tagName)
 				{
 					if (!$namefield->validate($tagName))
 					{
@@ -152,6 +152,7 @@ final class GDT_Tags extends GDT_Select
 			# chicken dinner
 			return true;
 		}
+		return false;
 	}
 
 	public function renderFilter(GDT_Filter $f): string

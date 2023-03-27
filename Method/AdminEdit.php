@@ -1,6 +1,7 @@
 <?php
 namespace GDO\Tags\Method;
 
+use GDO\Core\GDT;
 use GDO\DB\Database;
 use GDO\Form\GDT_AntiCSRF;
 use GDO\Form\GDT_Form;
@@ -17,7 +18,7 @@ final class AdminEdit extends MethodForm
 
 	private $gdo;
 
-	public function execute()
+	public function execute(): GDT
 	{
 		$this->gdo = GDO_Tag::table()->find(Common::getRequestString('id'));
 		return Module_Tags::instance()->renderAdminTabs()->addField(parent::execute());
@@ -36,7 +37,7 @@ final class AdminEdit extends MethodForm
 // 		$form->withGDOValuesFrom($this->gdo);
 	}
 
-	public function formValidated(GDT_Form $form)
+	public function formValidated(GDT_Form $form): GDT
 	{
 		$this->gdo->saveVars($form->getFormVars());
 		return parent::formValidated($form);

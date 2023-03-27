@@ -78,7 +78,7 @@ class GDT_TagCloud extends GDT_Template
 		{
 			$tagtable = $this->getTagTable();
 			$objtable = $this->table;
-			$query->join("JOIN {$tagtable->gdoTableIdentifier()} ON tag_tag={$filterId} AND tag_object={$objtable->gdoPrimaryKeyColumn()->identifier()}");
+			$query->join("JOIN {$tagtable->gdoTableIdentifier()} ON tag_tag={$filterId} AND tag_object={$objtable->gdoPrimaryKeyColumn()->getName()}");
 		}
 		return $this;
 	}
