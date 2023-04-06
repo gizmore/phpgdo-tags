@@ -21,7 +21,6 @@ final class GDO_Tag extends GDO
 			if (!($cache = $gdo->tempGet('gdo_tags')))
 			{
 				$tags = $gdo->gdoTagTable();
-				$tags instanceof GDO_TagTable;
 				$cache = $tags->select('tag_name, tag_id, tag_count')->joinObject('tag_tag')->where('tag_object=' . $gdo->getID())->exec()->fetchAllArray2dObject(self::table());
 				$gdo->tempSet('gdo_tags', $cache);
 			}

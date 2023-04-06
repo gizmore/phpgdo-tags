@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace GDO\Tags;
 
 use GDO\Core\GDT_Template;
@@ -9,7 +10,7 @@ use GDO\Table\GDT_Filter;
 /**
  * Render a tag cloud.
  *
- * @version 6.10
+ * @version 7.0.3
  * @since 6.04
  *
  * @author gizmore
@@ -23,11 +24,12 @@ class GDT_TagCloud extends GDT_Template
 
 	use WithObject;
 
-	public $totalCountCondition = '1';
-	public $filterName = 'f';
+	public string $totalCountCondition = '1';
+	public string $filterName = 'f';
 
 	protected function __construct()
 	{
+		parent::__construct();
 		$this->template('Tags', 'cell/tag_cloud.php', ['field' => $this]);
 	}
 
@@ -72,7 +74,7 @@ class GDT_TagCloud extends GDT_Template
 		return $this;
 	}
 
-	public function filterQuery(Query $query, GDT_Filter $f): self
+	public function filterQuery(Query $query, GDT_Filter $f): static
 	{
 		if ($filterId = $this->filterVar($f))
 		{
