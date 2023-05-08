@@ -24,7 +24,7 @@ final class AdminEdit extends MethodForm
 		return Module_Tags::instance()->renderAdminTabs()->addField(parent::execute());
 	}
 
-	public function createForm(GDT_Form $form): void
+	protected function createForm(GDT_Form $form): void
 	{
 		$tags = GDO_Tag::table();
 		$form->addFields(...$tags->gdoColumnsCache());
