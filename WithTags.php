@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace GDO\Tags;
 
 use GDO\DB\Cache;
@@ -12,7 +13,7 @@ use GDO\DB\Cache;
  * To allow editing tags in a form:
  * 1. Add a GDT_Tags::make() to your GDO columns.
  *
- * @version 6.10
+ * @version 7.0.3
  * @since 6.03
  * @author gizmore
  * @see GDT_Tags
@@ -30,10 +31,9 @@ trait WithTags
 	###########
 	### Get ###
 	###########
-	public function updateTags(array $newTags)
+	public function updateTags(array $newTags): void
 	{
 		$table = $this->gdoTagTable();
-		$table instanceof GDO_TagTable;
 
 		$oldTags = array_keys($this->getTags());
 
@@ -42,22 +42,23 @@ trait WithTags
 		$all = GDO_Tag::table()->all();
 		foreach ($new as $tagName)
 		{
-			if (!($tag = (@$all[$tagName])))
+			if (!isset($all[$tagName]))
 			{
 				$tag = GDO_Tag::blank(['tag_name' => $tagName])->insert();
 				$all[$tagName] = $tag;
 			}
 			else
 			{
+				$tag = $all[$tagName];
 				$tag->increase('tag_count');
 			}
-			$table->blank(['tag_tag' => $tag->getID(), 'tag_object' => $this->getID()])->replace();
+			$table::blank(['tag_tag' => $tag->getID(), 'tag_object' => $this->getID()])->softReplace();
 		}
 		foreach ($deleted as $tagName)
 		{
-			if ($tag = (@$all[$tagName]))
+			if (isset($all[$tagName]))
 			{
-				$tag->increase('tag_count', -1);
+				$all[$tagName]->increase('tag_count', -1);
 			}
 		}
 
@@ -67,8 +68,8 @@ trait WithTags
 		{
 			$tags[$tagName] = $all[$tagName];
 		}
+		$this->tbl()->tempUnset('gdo_tags');
 		$this->tempSet('gdo_tags', $tags);
-		$this->table()->tempUnset('gdo_tags');
 		$this->recache();
 		Cache::set('gdo_tags', $all);
 	}

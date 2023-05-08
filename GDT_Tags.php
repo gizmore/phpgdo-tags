@@ -104,7 +104,7 @@ final class GDT_Tags extends GDT_Select
 
 	public function renderForm(): string { return GDT_Template::php('Tags', 'form/tags.php', ['field' => $this]); }
 
-	public function renderJSON(): array|string|null
+	public function renderJSON(): array|string|null|int|bool|float
 	{
 		return [
 			'all' => array_keys(GDO_Tag::table()->all()),
