@@ -27,9 +27,9 @@ class GDT_Tag extends GDT_Object
 		return $this->getValue();
 	}
 
-	public function defaultLabel(): self
+	public function gdtDefaultLabel(): ?string
 	{
-		return $this->label('tag');
+		return 'tag';
 	}
 
 }

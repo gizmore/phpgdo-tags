@@ -58,7 +58,8 @@ final class GDT_Tags extends GDT_Select
 	### Event ###
 	#############
 
-	public function defaultLabel(): self { return $this->label('tags'); }
+	public function gdtDefaultLabel(): ?string
+    { return 'tags'; }
 
 	public function gdoAfterCreate(GDO $gdo): void { $this->updateTags(); }
 
